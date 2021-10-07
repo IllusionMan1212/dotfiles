@@ -16,7 +16,6 @@ packer.startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/telescope.nvim'
   use 'jremmen/vim-ripgrep'
-  use 'andweeb/presence.nvim'
 
   -- LSP
   use 'neovim/nvim-lspconfig'
