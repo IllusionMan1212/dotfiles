@@ -2,7 +2,6 @@ return function()
   require'bufferline'.setup{
     options = {
       view = "multiwindow",
-      numbers = "buffer_id | ordinal",
       modified_icon = '●',
       left_trunc_marker = '',
       right_trunc_marker = '',

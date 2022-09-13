@@ -1,9 +1,4 @@
-vim.g.nvim_tree_width = 35
-vim.g.nvim_tree_auto_open = 0
-vim.g.nvim_tree_auto_close = 1
 vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_hide_dotfiles = 0
-
 vim.g.nvim_tree_lint_lsp = 1
 -- vim.g.nvim_tree_lsp_diagnostics = 1
 
@@ -36,3 +31,14 @@ vim.g.nvim_tree_icons = {
 }
 
 vim.cmd[[highlight NvimTreeSymlink guifg=blue gui=bold,underline]]
+
+require("nvim-tree").setup {
+  open_on_setup = false,
+  auto_close = true,
+  filters = {
+    dotfiles = false,
+  },
+  view = {
+    width = 35,
+  }
+}

@@ -19,9 +19,10 @@ packer.startup(function()
 
   -- LSP
   use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
+  use 'rafaelsq/completion-nvim'
   use 'anott03/nvim-lspinstall'
-  use 'glepnir/lspsaga.nvim'
+  -- use 'glepnir/lspsaga.nvim'
+  use 'tami5/lspsaga.nvim'
   use 'ray-x/go.nvim'
   use {
     'creativenull/diagnosticls-configs-nvim',
@@ -57,7 +58,13 @@ packer.startup(function()
 
   -- EDITOR
   use 'kyazdani42/nvim-web-devicons'
-  use 'kyazdani42/nvim-tree.lua'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
+    config = function() require'plugins.nvimtree' end,
+  }
   use {
     'glepnir/galaxyline.nvim',
     branch = 'main',
@@ -69,6 +76,9 @@ packer.startup(function()
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = require'plugins.bufferline',
   }
+
+  -- KOTLIN
+  use "udalov/kotlin-vim"
 
 end
 )

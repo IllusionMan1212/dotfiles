@@ -29,7 +29,13 @@ end
 gls.left[2] = {
   ViMode = {
     provider = function()
-      local alias = {n = ' topkekerino ',i = ' minecraft ',c= 'i command thee ',v= ' soo visual ',V= ' such visual line ', [''] = 'its a block '}
+      local alias = {
+        n = ' NORMAL ',
+        i = ' INSERT ',
+        c= ' COMMAND ',
+        v= ' VISUAL ',
+        V= ' VISUAL LINE ',
+        [''] = ' BLOCK '}
       return alias[vim.fn.mode()]
     end,
     highlight = {colors.pink},
@@ -115,7 +121,7 @@ gls.right[2] = {
   DiffModified = {
     provider = 'DiffModified',
     condition = condition.hide_in_width,
-    icon = ' 柳',
+    icon = '  ',
     highlight = {colors.orange},
   }
 }
