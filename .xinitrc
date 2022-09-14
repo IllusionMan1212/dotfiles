@@ -134,5 +134,8 @@ lxpolkit &
 # start the network manager applet
 nm-applet &
 
+# monitor positioning for PC (disable this for laptop)
+xrandr --output DVI-D-1 --primary --left-of HDMI-0
+
 # start dwm after setting everything we need
 exec dwm
