@@ -6,8 +6,9 @@ packer.init({
     package_root = util.join_paths(vim.fn.stdpath('data'), 'site', 'pack')
   })
 
-packer.startup(function()
-  local use = use
+packer.startup(function(use)
+  -- PACKER
+  use 'wbthomason/packer.nvim'
 
   -- GENERAL
   use 'nvim-treesitter/nvim-treesitter'

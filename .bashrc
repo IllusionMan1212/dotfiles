@@ -129,9 +129,6 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:/usr/local/go/bin
 
-# nvim 0.6
-export PATH=$PATH:$HOME/Downloads/nvim-0.6/usr/bin
-
 # react native exports
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
