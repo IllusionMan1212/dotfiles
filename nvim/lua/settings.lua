@@ -27,3 +27,4 @@ wo.relativenumber = true
 wo.signcolumn = 'yes'
 wo.wrap = true
 vim.g.mapleader=' '
+o.mouse=nil

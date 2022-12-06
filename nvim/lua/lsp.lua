@@ -9,11 +9,10 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   )
 end
 
-local lspconfig = require'lspconfig' local completion = require'completion'
+local lspconfig = require'lspconfig'
 local function custom_on_attach(client)
   print('Attaching to ' .. client.name)
   setup_diagnostics()
-  completion.on_attach(client)
 end
 
 local default_config = {

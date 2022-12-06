@@ -20,20 +20,43 @@ packer.startup(function(use)
 
   -- LSP
   use 'neovim/nvim-lspconfig'
-  use 'rafaelsq/completion-nvim'
   use 'anott03/nvim-lspinstall'
-  -- use 'glepnir/lspsaga.nvim'
-  use 'tami5/lspsaga.nvim'
+  use 'j-hui/fidget.nvim'
+  use 'glepnir/lspsaga.nvim'
+  use {
+    'weilbith/nvim-code-action-menu',
+    cmd = 'CodeActionMenu',
+  }
   use 'ray-x/go.nvim'
   use {
     'creativenull/diagnosticls-configs-nvim',
     requires = { 'neovim/nvim-lspconfig' }
   }
 
+  -- AUTOCOMPLETE
+  use {
+    "hrsh7th/nvim-cmp",
+    requires = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-emoji",
+      {
+        -- Snippets
+        "L3MON4D3/LuaSnip",
+        requires = {
+          "saadparwaiz1/cmp_luasnip",
+          "rafamadriz/friendly-snippets",
+        },
+      },
+    },
+  }
+
   -- THEMES
   use 'sainnhe/edge'
-  -- use 'folke/tokyonight.nvim'
-  use 'codicocodes/tokyonight.nvim'
+  use 'folke/tokyonight.nvim'
+  -- use 'codicocodes/tokyonight.nvim'
 
   -- GIT
   use 'tpope/vim-fugitive'
@@ -85,3 +108,4 @@ end
 )
 
 require 'lspsaga'.init_lsp_saga()
+require 'fidget'.setup{}

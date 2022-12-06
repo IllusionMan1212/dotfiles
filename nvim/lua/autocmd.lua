@@ -28,3 +28,6 @@ require("go.format").goimport()
 
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
 
+-- set the filetype for prisma files
+vim.api.nvim_exec([[ autocmd BufRead,BufNewFile *.prisma set filetype=prisma]], false)
+

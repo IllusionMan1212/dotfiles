@@ -201,3 +201,4 @@ export PATH="$PNPM_HOME:$PATH"
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [ -f /home/illusion/Desktop/repos/fontplop/node_modules/tabtab/.completions/electron-forge.bash ] && . /home/illusion/Desktop/repos/fontplop/node_modules/tabtab/.completions/electron-forge.bash
+alias luamake=/luamake
