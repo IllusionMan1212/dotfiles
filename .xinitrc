@@ -1,6 +1,6 @@
 #!/bin/bash
 # set wallpaper
-feh --bg-max /home/illusion/wallpapers/kronii.jpeg &
+feh --bg-max /home/illusion/wallpapers/suisei-recording.jpg &
 
 # set up the composition manager to get transparent terminals to work
 xcompmgr &
@@ -57,7 +57,7 @@ do
 	MEM=$(free -h | awk '(NR==2){ print $3"/"$2 }')
 
 	WIFI_STATE=$(cat /sys/class/net/wlp3s0/operstate)
-	BLUETOOTH_STATE=$(cat /sys/class/bluetooth/hci0/rfkill0/state)
+	BLUETOOTH_STATE=$(cat /sys/class/bluetooth/hci0/rfkill3/state)
 
 	# wifi
 	if [[ ${WIFI_STATE} == "up" ]]
@@ -81,7 +81,7 @@ do
 	if [[ $VOLUME_NUM -lt 30 ]]
 	then
 		SPEAKER=${VOLUME_LOW}
-	elif [[ $VOLUME_NUM -gt 60 ]]
+	elif [[ $VOLUME_NUM -gte 60 ]]
 	then
 		SPEAKER=${VOLUME_HIGH}
 	elif [[ $VOLUME_NUM -gt 30 && $VOLUME_NUM -lt 60 ]]
