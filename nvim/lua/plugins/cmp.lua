@@ -66,7 +66,8 @@ cmp.setup({
         { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "path" },
-        { name = "emoji" }
+        { name = "emoji" },
+        { name = "copilot" }
       }),
     mapping = {
       ["<C-p>"] = cmp.mapping.select_prev_item(),

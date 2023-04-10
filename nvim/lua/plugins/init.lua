@@ -33,6 +33,12 @@ packer.startup(function(use)
     requires = { 'neovim/nvim-lspconfig' }
   }
 
+  -- COPILOT
+  use 'github/copilot.vim'
+
+  -- UNDO
+  use 'mbbill/undotree'
+
   -- AUTOCOMPLETE
   use {
     "hrsh7th/nvim-cmp",
@@ -42,6 +48,7 @@ packer.startup(function(use)
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-copilot",
       {
         -- Snippets
         "L3MON4D3/LuaSnip",
@@ -107,5 +114,5 @@ packer.startup(function(use)
 end
 )
 
-require 'lspsaga'.init_lsp_saga()
+require 'lspsaga'.setup()
 require 'fidget'.setup{}

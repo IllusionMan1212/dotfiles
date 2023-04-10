@@ -179,6 +179,9 @@ export PATH=$PATH:~/.dotnet/tools
 # add kotlin-language-server to PATH
 export PATH=$PATH:~/Desktop/repos/kotlin-language-server/bin
 
+# add lua-language-server to PATH
+export PATH=$PATH:~/Desktop/repos/lua-language-server/bin
+
 # add gradle to PATH
 export PATH=$PATH:/opt/gradle/gradle-7.2/bin
 

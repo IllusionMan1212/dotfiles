@@ -50,14 +50,14 @@ PLUG="ﮣ"
 # set statusbar
 while true
 do
-	DATETIME=$(date +"%b-%d %R")
+	DATETIME=$(date +"%a %b-%d %R")
 	VOLUME=$(amixer -D pulse get Master | awk -F'[][]' 'END{ print $2 }')
 	AUDIOSTATE=$(amixer -D pulse get Master | awk -F'[][]' 'END{ print $4 }')
 	SPACE=$(df -h | awk '{ if ($6 == "/home") print $3"/"$2 }')
 	MEM=$(free -h | awk '(NR==2){ print $3"/"$2 }')
 
 	WIFI_STATE=$(cat /sys/class/net/wlp3s0/operstate)
-	BLUETOOTH_STATE=$(cat /sys/class/bluetooth/hci0/rfkill3/state)
+	BLUETOOTH_STATE=$(cat /sys/class/bluetooth/hci0/rfkill0/state)
 
 	# wifi
 	if [[ ${WIFI_STATE} == "up" ]]
@@ -81,7 +81,7 @@ do
 	if [[ $VOLUME_NUM -lt 30 ]]
 	then
 		SPEAKER=${VOLUME_LOW}
-	elif [[ $VOLUME_NUM -gte 60 ]]
+	elif [[ $VOLUME_NUM -ge 60 ]]
 	then
 		SPEAKER=${VOLUME_HIGH}
 	elif [[ $VOLUME_NUM -gt 30 && $VOLUME_NUM -lt 60 ]]
@@ -134,8 +134,14 @@ lxpolkit &
 # start the network manager applet
 nm-applet &
 
+# start the flameshot daemon
+flameshot &
+
+# system bus notification daemon (needed for earlyoom to send notifications)
+systembus-notify &
+
 # monitor positioning for PC (disable this for laptop)
-xrandr --output DVI-D-1 --primary --left-of HDMI-0
+#xrandr --output DVI-D-1 --primary --left-of HDMI-0
 
 # start dwm after setting everything we need
 exec dwm

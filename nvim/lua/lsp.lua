@@ -58,6 +58,8 @@ lspconfig.pyright.setup(default_config)
 lspconfig.intelephense.setup(default_config)
 lspconfig.rust_analyzer.setup(default_config)
 lspconfig.prismals.setup(default_config)
+-- lspconfig.tailwindcss.setup(default_config)
+lspconfig.lua_ls.setup(default_config)
 
 vim.g.completion_matching_strategy_list = {'substring', 'exact', 'fuzzy', 'all'}
 vim.g.diagnostic_enable_virtual_text = 1
