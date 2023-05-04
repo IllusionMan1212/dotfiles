@@ -111,15 +111,18 @@ fi
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
-
-export VITASDK=/usr/local/vitasdk
-export PATH=$VITASDK/bin:$PATH
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
 fi
+
+# cargo stuff. auto added by rustup
+. "$HOME/.cargo/env"
+
+export VITASDK=/usr/local/vitasdk
+export PATH=$VITASDK/bin:$PATH
 export PATH=$HOME/android-studio/bin:$PATH
-export PATH=$HOME/Downloads/blender-3.1.0-linux-x64:$PATH
+export PATH=$HOME/Downloads/blender:$PATH
 export DENO_INSTALL="/home/illusion/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
@@ -139,14 +142,11 @@ export ANDROID_SDK_ROOT=$HOME/Android/Sdk
 # needed for some(?) java programs when using DWM
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# bin dir for repo (for android dev)
+# bin dir for repo
 export PATH=$PATH:~/bin
 
-# fucking around with bash
+# bash stuff
 export PS1='\$ '
-
-# Kitty
-export PATH=$PATH:~/.local/kitty.app/bin
 
 # adding LIBDIR (/usr/local/lib) to PATH so we can link against it (this is for libxft2.3.3 which is used for colored emojis in dwm)
 export LD_LIBRARY_PATH=/usr/local/lib
@@ -154,54 +154,37 @@ export LD_LIBRARY_PATH=/usr/local/lib
 # export ~/.local/bin
 export PATH=$PATH:~/.local/bin
 
-# export global yarn bin dir
-export PATH=$PATH:~/.yarn/bin
-
-# add flutter bin to PATH
+# add flutter and dart bins to PATH
 export PATH=$PATH:~/flutter/bin
+export PATH=$PATH:~/.pub-cache/bin
 
-# repos command
-alias repos='cd ~/Desktop/repos'
-
-# home comand
-alias home='cd ~'
-
-# work command
-alias work='cd ~/Desktop/repos/work'
-
-# freeze command to sleep the computer
-alias freeze='bash ~/scripts/freeze.sh'
-
-# add dotnet tools to PATH
+# add dotnet to PATH
 export PATH=$PATH:~/.dotnet/tools
-. "$HOME/.cargo/env"
 
-# add kotlin-language-server to PATH
-export PATH=$PATH:~/Desktop/repos/kotlin-language-server/bin
-
-# add lua-language-server to PATH
-export PATH=$PATH:~/Desktop/repos/lua-language-server/bin
+# add language servers to PATH
+export PATH=$PATH:~/Desktop/repos/kotlin-language-server/bin # kotlin
+export PATH=$PATH:~/Desktop/repos/lua-language-server/bin # lua
 
 # add gradle to PATH
 export PATH=$PATH:/opt/gradle/gradle-7.2/bin
 
-# sataniabuddy alias
+# aliases
+alias repos='cd ~/Desktop/repos'
+alias home='cd ~'
+alias work='cd ~/Desktop/repos/work'
+alias vpn-connect='openvpn3 session-start --config'
+alias vpn-disconnect='openvpn3 session-manage --disconnect --config'
+alias freeze='bash ~/scripts/freeze.sh' # puts the computer to sleep
 alias satania='/home/illusion/Desktop/repos/SataniaBuddy/satania'
-
-# add composer bin to PATH
-export PATH=$PATH:~/.config/composer/vendor/bin
 
 # export xauthority env var (needed for root user to connect to the display)
 export XAUTHORITY=~/.Xauthority
 
+# fcitx env vars
 export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 
-export PNPM_HOME="/home/illusion/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
 
-# tabtab source for electron-forge package
-# uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[ -f /home/illusion/Desktop/repos/fontplop/node_modules/tabtab/.completions/electron-forge.bash ] && . /home/illusion/Desktop/repos/fontplop/node_modules/tabtab/.completions/electron-forge.bash
-alias luamake=/luamake
+
+alias luamake=/home/illusion/Desktop/repos/lua-language-server/3rd/luamake/luamake
