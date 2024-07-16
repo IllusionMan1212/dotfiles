@@ -117,7 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 # cargo stuff. auto added by rustup
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"
 
 export VITASDK=/usr/local/vitasdk
 export PATH=$VITASDK/bin:$PATH
@@ -164,18 +164,30 @@ export PATH=$PATH:~/.dotnet/tools
 # add language servers to PATH
 export PATH=$PATH:~/Desktop/repos/kotlin-language-server/bin # kotlin
 export PATH=$PATH:~/Desktop/repos/lua-language-server/bin # lua
+export PATH=$PATH:~/Desktop/repos/ols # Odin
 
 # add gradle to PATH
-export PATH=$PATH:/opt/gradle/gradle-7.2/bin
+export PATH=$PATH:/opt/gradle/gradle-8.1.1/bin
+
+# some weird needed export for RPCSX
+export VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_shader_object
+
+# Odin root
+export ODIN_ROOT=~/Desktop/repos/Odin
 
 # aliases
 alias repos='cd ~/Desktop/repos'
-alias home='cd ~'
 alias work='cd ~/Desktop/repos/work'
 alias vpn-connect='openvpn3 session-start --config'
 alias vpn-disconnect='openvpn3 session-manage --disconnect --config'
 alias freeze='bash ~/scripts/freeze.sh' # puts the computer to sleep
 alias satania='/home/illusion/Desktop/repos/SataniaBuddy/satania'
+alias yt-dlp-all='yt-dlp --write-subs --sub-langs "en,ja,live_chat" --sub-format "vtt/json/best" --add-metadata --write-description --write-thumbnail --embed-thumbnail --write-comments --write-info-json --embed-chapters --merge-output-format mkv -o "[%(upload_date)s] [%(id)s] %(title).180B.%(ext)s" -f bestvideo+bestaudio'
+alias yt-dlp-no-subs='yt-dlp --add-metadata --write-description --write-thumbnail --embed-thumbnail --write-info-json --embed-chapters --merge-output-format mkv -o "[%(upload_date)s] [%(id)s] %(title).180B.%(ext)s" -f bestvideo+bestaudio'
+alias gpu-run='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
+alias watch-cpu='watch -n 1 "(cat /proc/cpuinfo | grep MHz)"'
+alias udev-watch='udevadm monitor --property --udev'
+alias hdd-off='udisksctl unmount --block-device /dev/sda2 && sleep 1 && udisksctl power-off --block-device /dev/sda'
 
 # export xauthority env var (needed for root user to connect to the display)
 export XAUTHORITY=~/.Xauthority
@@ -188,3 +200,7 @@ export QT_IM_MODULE=fcitx
 
 
 alias luamake=/home/illusion/Desktop/repos/lua-language-server/3rd/luamake/luamake
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH

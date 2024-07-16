@@ -1,18 +1,16 @@
 #!/bin/bash
-# set wallpaper
-feh --bg-max /home/illusion/wallpapers/suisei-recording.jpg &
 
 # set up the composition manager to get transparent terminals to work
 xcompmgr &
 
 # change the touchpad preferences on x
 # enable tapping
-xinput set-prop "DELL083F:00 04F3:3088 Touchpad" "libinput Tapping Enabled" 1
+xinput set-prop "ELAN0527:00 04F3:3153 Touchpad" "libinput Tapping Enabled" 1
 # enable natural scrolling
-xinput set-prop "DELL083F:00 04F3:3088 Touchpad" "libinput Natural Scrolling Enabled" 1
+xinput set-prop "ELAN0527:00 04F3:3153 Touchpad" "libinput Natural Scrolling Enabled" 1
 
 # run sataniabuddy (ITODDLERS BTFO!!!)
-/home/illusion/Desktop/repos/SataniaBuddy/satania &
+#/home/illusion/Desktop/repos/SataniaBuddy/satania &
 
 # turn off screen blanking/screen-saver
 xset -dpms
@@ -24,10 +22,7 @@ xset s noblank
 fcitx5 &
 
 # start the bluetooth service
-systemctl start bluetooth.service
-
-# start unified remote server (also launches firefox)
-/opt/urserver/urserver-start &
+#systemctl start bluetooth.service
 
 VOLUME_HIGH="墳"
 VOLUME_MEDIUM="奔"
@@ -95,12 +90,12 @@ do
 	fi
 
 	# battery
-	if [[ ! -d '/sys/class/power_supply/BAT0' ]]
+	if [[ ! -d '/sys/class/power_supply/BAT1' ]]
 	then
 		BATTERY=${PLUG}
 	else
-		CHARGING=$(cat '/sys/class/power_supply/BAT0/status')
-		BAT_LVL=$(cat '/sys/class/power_supply/BAT0/capacity')
+		CHARGING=$(cat '/sys/class/power_supply/BAT1/status')
+		BAT_LVL=$(cat '/sys/class/power_supply/BAT1/capacity')
 		if [[ ${CHARGING} == 'Charging' ]]
 		then
 			BATTERY="${BATTERY_CHARGING} ${BAT_LVL}%"
@@ -125,7 +120,7 @@ do
 	fi
 
 	xsetroot -name " ${WIFI} | ${BLUETOOTH} | ${BATTERY} | ${SPEAKER} ${VOLUME} |  ${MEM} |  ${SPACE} |  ${DATETIME}"
-	sleep 10s
+	sleep 2s
 done &
 
 # start lxpolicykit (needed for unprivileged programs to use elevated privileges for a while)
@@ -137,11 +132,29 @@ nm-applet &
 # start the flameshot daemon
 flameshot &
 
+# start sunshine
+sunshine &
+
+# start qbittorrent
+# qbittorrent &
+
 # system bus notification daemon (needed for earlyoom to send notifications)
-systembus-notify &
+#systembus-notify &
+
+# notification daemon
+dunst &
+
+# playerctl daemon
+playerctld &
 
 # monitor positioning for PC (disable this for laptop)
 #xrandr --output DVI-D-1 --primary --left-of HDMI-0
+
+# 2nd monitor for laptop
+xrandr --output HDMI-1-0 --left-of eDP-1 --mode 1366x768
+
+# set wallpaper
+feh --bg-fill /home/illusion/wallpapers/marine-hanabi.jpeg &
 
 # start dwm after setting everything we need
 exec dwm
