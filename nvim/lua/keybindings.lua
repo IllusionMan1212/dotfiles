@@ -11,7 +11,7 @@ end
 key_mapper('', '<leader>p', ':bprev<CR>')
 key_mapper('', '<leader>n', ':bnext<CR>')
 key_mapper('', '<leader>bd', ':bd<CR>')
-key_mapper('', '<leader>w', ':w<CR>')
+key_mapper('', '<leader>w', ':w!<CR>')
 key_mapper('', '<leader>1', ':BufferLineGoToBuffer 1<CR>')
 key_mapper('', '<leader>2', ':BufferLineGoToBuffer 2<CR>')
 key_mapper('', '<leader>3', ':BufferLineGoToBuffer 3<CR>')

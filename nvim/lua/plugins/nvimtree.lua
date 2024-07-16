@@ -3,7 +3,6 @@ vim.g.nvim_tree_lint_lsp = 1
 vim.cmd[[highlight NvimTreeSymlink guifg=blue gui=bold,underline]]
 
 require("nvim-tree").setup {
-  open_on_setup = false,
   filters = {
     dotfiles = false,
   },

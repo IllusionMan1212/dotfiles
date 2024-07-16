@@ -46,20 +46,59 @@ require 'diagnosticls-configs'.setup {
 
 lspconfig.tsserver.setup(default_config)
 lspconfig.gopls.setup(default_config)
-lspconfig.clangd.setup(default_config)
+lspconfig.clangd.setup({
+    on_attach = custom_on_attach,
+    cmd = {
+      "clangd",
+      "--offset-encoding=utf-16"
+    }
+  })
 lspconfig.cmake.setup(default_config)
 lspconfig.dartls.setup(default_config)
-lspconfig.csharp_ls.setup(default_config)
+lspconfig.csharp_ls.setup({
+    on_attach = custom_on_attach,
+    root_dir = function(startpath)
+      return lspconfig.util.root_pattern("*.sln")(startpath)
+      or lspconfig.util.root_pattern("*.csproj")(startpath)
+      or lspconfig.util.root_pattern("*.fsproj")(startpath)
+      or lspconfig.util.root_pattern(".git")(startpath)
+    end,
+  })
 -- lspconfig.denols.setup(default_config)
 lspconfig.kotlin_language_server.setup(default_config)
 lspconfig.pyright.setup(default_config)
 -- lspconfig.phpactor.setup(default_config)
 -- lspconfig.psalm.setup(default_config)
 lspconfig.intelephense.setup(default_config)
-lspconfig.rust_analyzer.setup(default_config)
+lspconfig.rust_analyzer.setup({
+    on_attach = custom_on_attach,
+    settings = {
+      ["rust-analyzer"] = {
+        assist = {
+          importGranularity = "module",
+          importPrefix = "by_self",
+        },
+        cargo = {
+          loadOutDirsFromCheck = true
+        },
+        checkOnSave = {
+          allFeatures = true,
+          overrideCommand = {
+            'cargo', 'clippy', '--workspace', '--message-format=json',
+            '--all-targets', '--all-features'
+          }
+        },
+        procMacro = {
+          enable = true
+        },
+      }
+    }
+  })
 lspconfig.prismals.setup(default_config)
 -- lspconfig.tailwindcss.setup(default_config)
 lspconfig.lua_ls.setup(default_config)
+lspconfig.glsl_analyzer.setup(default_config)
+lspconfig.ols.setup(default_config)
 
 vim.g.completion_matching_strategy_list = {'substring', 'exact', 'fuzzy', 'all'}
 vim.g.diagnostic_enable_virtual_text = 1

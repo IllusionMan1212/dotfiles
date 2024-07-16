@@ -3,9 +3,9 @@ vim.cmd[[au TextYankPost * silent! lua vim.highlight.on_yank()]]
 
 -- golang lsp stuff
 local cfg = {
-  goimport='gopls',
+  goimports='gopls',
   gofmt='gopls',
-  max_line_len = 120, -- max line length in goline format
+  --max_line_len = 120, -- max line length in goline format
   tag_transform = false, -- tag_transfer  check gomodifytags for details
   test_template = '', -- default to testify if not set; g:go_nvim_tests_template  check gotests for details
   test_template_dir = '', -- default to nil if not set; g:go_nvim_tests_template_dir  check gotests for details
@@ -17,16 +17,24 @@ local cfg = {
                        -- true: will use go.nvim on_attach if true
                        -- nil/false do nothing
   gopls_cmd = '$HOME/go/bin/gopls', -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile",
-  lsp_diag_hdlr = true, -- hook lsp diag handler
+  diagnostic = {
+    hdlr = true, -- hook lsp diag handler
+  },
   dap_debug = false, -- set to true to enable dap
   dap_debug_keymap = true, -- set keymaps for debugger
   dap_debug_gui = true, -- set to true to enable dap gui, highly recommand
   dap_debug_vt = true, -- set to true to enable dap virtual text
 }
 require('go').setup(cfg)
-require("go.format").goimport()
+require("go.format").goimports()
 
-vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
+-- format go files on save
+vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimports() ]], false)
+-- format odin files on save
+--vim.api.nvim_create_autocmd("BufWritePost", {
+--    pattern = "*.odin",
+--    command = "silent! !odinfmt -w <afile>"
+--})
 
 -- set the filetype for prisma files
 vim.api.nvim_exec([[ autocmd BufRead,BufNewFile *.prisma set filetype=prisma]], false)
