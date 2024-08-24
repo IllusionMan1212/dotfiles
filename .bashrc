@@ -57,7 +57,8 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -145,9 +146,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # bin dir for repo
 export PATH=$PATH:~/bin
 
-# bash stuff
-export PS1='\$ '
-
 # adding LIBDIR (/usr/local/lib) to PATH so we can link against it (this is for libxft2.3.3 which is used for colored emojis in dwm)
 export LD_LIBRARY_PATH=/usr/local/lib
 
@@ -188,6 +186,15 @@ alias gpu-run='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
 alias watch-cpu='watch -n 1 "(cat /proc/cpuinfo | grep MHz)"'
 alias udev-watch='udevadm monitor --property --udev'
 alias hdd-off='udisksctl unmount --block-device /dev/sda2 && sleep 1 && udisksctl power-off --block-device /dev/sda'
+
+yt-dlp-get-flat-channel-ids() {
+    yt-dlp --print '{"id":%(id)j,"thumbnail":%(thumbnail)j,"title":%(title)j,"upload_date":%(upload_date)j,"webpage_url":%(webpage_url)j,"playlist_title":%(playlist_title)j}' $1 > all-videos-ids-with-date-minimal.json
+}
+
+yt-dlp-get-channel-ids-with-category() {
+    yt-dlp --print '{"id":%(id)j,"thumbnail":%(thumbnail)j,"title":%(title)j,"upload_date":%(upload_date)j,"webpage_url":%(webpage_url)j,"playlist_title":%(playlist_title)j}' --cookies ~/cookies.txt $1 > all-videos-ids-with-date-minimal.json
+}
+
 
 # export xauthority env var (needed for root user to connect to the display)
 export XAUTHORITY=~/.Xauthority

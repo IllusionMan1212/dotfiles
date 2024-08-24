@@ -23,24 +23,18 @@ require'diagnosticls-configs'.init(default_config)
 
 local eslint = require 'diagnosticls-configs.linters.eslint'
 
-local prettier = require 'diagnosticls-configs.formatters.prettier'
-
 require 'diagnosticls-configs'.setup {
   ['javascript'] = {
     linter = eslint,
-    formatter = prettier
   },
   ['javascriptreact'] = {
     linter = eslint,
-    formatter = prettier
   },
   ['typescript'] = {
     linter = eslint,
-    formatter = prettier
   },
   ['typescriptreact'] = {
     linter = eslint,
-    formatter = prettier
   }
 }
 
@@ -65,7 +59,7 @@ lspconfig.csharp_ls.setup({
     end,
   })
 -- lspconfig.denols.setup(default_config)
-lspconfig.kotlin_language_server.setup(default_config)
+-- lspconfig.kotlin_language_server.setup(default_config)
 lspconfig.pyright.setup(default_config)
 -- lspconfig.phpactor.setup(default_config)
 -- lspconfig.psalm.setup(default_config)
@@ -96,7 +90,7 @@ lspconfig.rust_analyzer.setup({
   })
 lspconfig.prismals.setup(default_config)
 -- lspconfig.tailwindcss.setup(default_config)
-lspconfig.lua_ls.setup(default_config)
+-- lspconfig.lua_ls.setup(default_config)
 lspconfig.glsl_analyzer.setup(default_config)
 lspconfig.ols.setup(default_config)
 

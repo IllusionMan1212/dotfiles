@@ -21,7 +21,6 @@ packer.startup(function(use)
   -- LSP
   use 'neovim/nvim-lspconfig'
   use 'anott03/nvim-lspinstall'
-  use 'j-hui/fidget.nvim'
   use 'glepnir/lspsaga.nvim'
   use {
     'weilbith/nvim-code-action-menu',
@@ -42,9 +41,7 @@ packer.startup(function(use)
     requires = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-emoji",
       {
         -- Snippets
         "L3MON4D3/LuaSnip",
@@ -77,38 +74,20 @@ packer.startup(function(use)
 
   -- EDITING
   use 'jiangmiao/auto-pairs'
-  use { 'prettier/vim-prettier', run = 'yarn install' }
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
-  use 'phaazon/hop.nvim'
   use 'tpope/vim-abolish'
 
   -- EDITOR
-  use 'kyazdani42/nvim-web-devicons'
   use {
     'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons',
-    },
     config = function() require'plugins.nvimtree' end,
   }
   use {
-    'glepnir/galaxyline.nvim',
-    branch = 'main',
-    config = function() require'plugins.galaxyline' end,
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
-  }
-  use {
     'akinsho/nvim-bufferline.lua',
-    requires = { 'kyazdani42/nvim-web-devicons' },
     config = require'plugins.bufferline',
   }
-
-  -- KOTLIN
-  use "udalov/kotlin-vim"
-
 end
 )
 
 require 'lspsaga'.setup()
-require 'fidget'.setup{}
